@@ -51,9 +51,9 @@ namespace api.Repositoris
                 }
             }
 
-            // int skipNumber = (query.pageNumber -1) * query.pageSize;
-
-            return await stocks.ToListAsync();
+            int skipNumber = (query.pageNumber -1) * query.pageSize;
+            
+            return await stocks.Skip(skipNumber).Take(query.pageSize).ToListAsync();
         }
 
         public async Task<Stock?> GetByIdAsync(int id)
